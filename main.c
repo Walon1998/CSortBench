@@ -5,6 +5,7 @@
 #include <math.h>
 #include <malloc.h>
 #include <stdlib.h>
+#include <time.h>
 
 int cmpfunc(const void *a, const void *b) {
     return (*(int *) a - *(int *) b);
@@ -28,8 +29,6 @@ int main() {
             clock_t end = clock() - start;
             double TimeTaken = (double) end / CLOCKS_PER_SEC;
             TimeSum += TimeTaken;
-
-
         }
         double AverageTime = TimeSum / Repetitions;
         printf("%e\n", AverageTime);
