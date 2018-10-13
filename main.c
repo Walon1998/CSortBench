@@ -13,7 +13,7 @@ static void swap(int array[], int i, int j) {
     array[j] = temp;
 }
 
-int teile(int array[], int *links, int *rechts) {
+int teile(int *array, int links, int rechts) {
     int i = links;
     int j = rechts - 1;
     int pivot = array[rechts];
@@ -49,19 +49,19 @@ int cmpfunc(const void *a, const void *b) {
     return (*(int *) a - *(int *) b);
 }
 
-void quicksort(int *array, int *links, int *rechts) {
-    if (*links < *rechts) {
-        int *pivot = teile(array, links, rechts);
+void quicksort(int *array, int links, int rechts) {
+    if (links < rechts) {
+        int pivot = teile(array, links, rechts);
         quicksort(array, links, pivot);
-        quicksort(array, links, pivot);
+        quicksort(array, pivot + 1, rechts);
 
     }
 }
 
 
 int main() {
-    int Max2Pow = 10;
-    int Repetitions = 1;
+    int Max2Pow = 30;
+    int Repetitions = 100;
     for (int i = 0; i < Max2Pow; ++i) {
         int size = pow(2, i);
         double TimeSum = 0;
