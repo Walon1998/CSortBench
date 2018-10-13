@@ -12,8 +12,8 @@ int cmpfunc(const void *a, const void *b) {
 }
 
 int main() {
-    int Max2Pow = 20;
-    int Repetitions = 1;
+    int Max2Pow = 30;
+    int Repetitions = 100;
     for (int i = 0; i < Max2Pow; ++i) {
         int size = pow(2, i);
         double TimeSum = 0;
@@ -27,10 +27,12 @@ int main() {
             clock_t start = clock();
             qsort(array, size, sizeof(int), cmpfunc);
             clock_t end = clock() - start;
-            double TimeTaken = (double) end / CLOCKS_PER_SEC;
+            double TimeTaken = (double) end;
             TimeSum += TimeTaken;
+            free(array);
         }
-        double AverageTime = TimeSum / Repetitions;
-        printf("%e\n", AverageTime);
+        double AverageTime = TimeSum / (Repetitions * CLOCKS_PER_SEC);
+//        printf("2^%d: %g\n",i, AverageTime);
+        printf("%g \n", AverageTime);
     }
 }
